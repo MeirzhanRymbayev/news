@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+    <form-beans>
+        <form-bean name="newsForm" type="com.epam.mrymbayev.form.NewsForm"/>
+        <form-bean name="userForm" type="com.epam.mrymbayev.form.UserForm"/>
+    </form-beans>
+
+    <global-forwards>
+        <forward name="newsList" path="/WEB-INF/pages/showNews.jsp"/>
+    </global-forwards>
+
+    <action-mappings>
+
+        <action path="/createNews"
+                type="com.epam.mrymbayev.action.CreateNewsAction"
+                name="newsForm"
+                scope="request"
+                validate="false">
+            <forward name="createNews" path="/WEB-INF/pages/createNews.jsp"/>
+        </action>
+
+        <action path="/showNews" type="com.epam.mrymbayev.action.ShowNewsAction"
+                name="newsForm">
+            <forward name="success" path="/WEB-INF/pages/showNews.jsp"/>
+        </action>
+
+
+        <action path="/Login" type="com.epam.mrymbayev.action.UserAction"
+                parameter="login">
+            <forward name="success" path="/WEB-INF/pages/login.jsp"/>
+        </action>
+
+    </action-mappings>
+
+
+
+</struts-config>
