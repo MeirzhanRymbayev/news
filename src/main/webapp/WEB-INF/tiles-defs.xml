@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <!DOCTYPE tiles-definitions PUBLIC
         "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
         "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
 
 <tiles-definitions>
-    <definition name="example"/>
+    <definition name="base.layout" path="/baseLayout.jsp">
+        <put name="title" value="Tiles Example"/>
+        <put name="header" value="/blocks/header.jsp"/>
+        <put name="menu" value="/blocks/menu.jsp"/>
+        <put name="body" value="/blocks/body.jsp"/>
+        <put name="footer" value="/blocks/footer.jsp"/>
+    </definition>
+
+    <definition name="index" extends="base.layout">
+        <put name="title" value="Index"/>
+    </definition>
 </tiles-definitions>

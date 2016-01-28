@@ -1,3 +1,4 @@
+/*
 package com.epam.mrymbayev.action;
 
 import com.epam.mrymbayev.entity.User;
@@ -23,3 +24,4 @@ public class UserAction extends Action {
         return mapping.findForward("success");
     }
 }
+*/

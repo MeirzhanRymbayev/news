@@ -5,8 +5,7 @@
     <title>All news</title>
 </head>
 <body>
-Show new page<br/>
-The news should be here
+Show new page<br/>The news should be here
 ${user.username}
 </body>
 </html>
