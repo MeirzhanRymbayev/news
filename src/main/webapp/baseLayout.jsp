@@ -9,7 +9,6 @@
     <title><tiles:getAsString name="title" ignore="true" /></title>
 </head>
 <body>
-Hello Fuck!!!!!!!!!!!
             <tiles:insert attribute="header"/>
             <tiles:insert attribute="menu" />
             <tiles:insert attribute="body" />
