@@ -4,9 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="container">
-    <div class="col-md-9 col-md-push-3" style="border: 1px solid black;">
+
+    <div class="col-md-9" style="border: 1px solid black;">
         Content
     </div>
-
-</div>

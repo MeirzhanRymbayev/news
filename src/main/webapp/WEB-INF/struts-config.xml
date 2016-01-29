@@ -18,9 +18,16 @@
 
     <action-mappings>
 
+        <action path="/createNewsPage"
+                type="com.epam.mrymbayev.action.CreateNewsPageAction"
+                name="newsForm">
+            <forward name="success" path="create.news"/>
+        </action>
+
         <action path="/createNews"
-                type="com.epam.mrymbayev.action.CreateNewsAction">
-            <forward name="success" path="index"/>
+                type="com.epam.mrymbayev.action.CreateNewsAction"
+                name="newsForm">
+            <forward name="success" path="news.created"/>
         </action>
 
         <action path="/viewNews" type="com.epam.mrymbayev.action.ShowNewsAction">

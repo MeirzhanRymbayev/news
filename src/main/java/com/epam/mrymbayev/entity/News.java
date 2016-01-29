@@ -6,7 +6,7 @@ public class News {
     private long id;
     private String title;
     private String brief;
-    private Date date;
+//    private Date date;
     private boolean isChecked;
 
     public long getId() {
@@ -33,13 +33,13 @@ public class News {
         this.brief = brief;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     public boolean isChecked() {
         return isChecked;

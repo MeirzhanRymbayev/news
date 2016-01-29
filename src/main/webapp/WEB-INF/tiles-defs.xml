@@ -17,9 +17,19 @@
         <put name="title" value="Index"/>
     </definition>
 
+    <definition name="create.news" extends="base.layout">
+        <put name="title" value="Create news"/>
+        <put name="body" value="/blocks/createNewsPage.jsp"/>
+    </definition>
+
     <definition name="view.news" extends="base.layout">
-        <put name="title" value="News list"/>
+        <put name="title" value="View news"/>
         <put name="body" value="/blocks/viewNewsBody.jsp"/>
     </definition>
+
+    <definition name="news.created" extends="base.layout">
+    <put name="title" value="News created"/>
+    <put name="body" value="/blocks/newsCreatedBody.jsp"/>
+</definition>
 
 </tiles-definitions>
