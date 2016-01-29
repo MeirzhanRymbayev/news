@@ -4,7 +4,8 @@
         "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
 
 <tiles-definitions>
-    <definition name="base.layout" path="/baseLayout.jsp">
+
+    <definition name="base.layout" template="/baseLayout.jsp">
         <put name="title" value="Tiles Example"/>
         <put name="header" value="/blocks/header.jsp"/>
         <put name="menu" value="/blocks/menu.jsp"/>
@@ -15,4 +16,10 @@
     <definition name="index" extends="base.layout">
         <put name="title" value="Index"/>
     </definition>
+
+    <definition name="view.news" extends="base.layout">
+        <put name="title" value="News list"/>
+        <put name="body" value="/blocks/viewNewsBody.jsp"/>
+    </definition>
+
 </tiles-definitions>

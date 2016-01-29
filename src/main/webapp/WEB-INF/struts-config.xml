@@ -19,14 +19,12 @@
     <action-mappings>
 
         <action path="/createNews"
-                type="com.epam.mrymbayev.action.CreateNewsAction"
-                validate="false">
+                type="com.epam.mrymbayev.action.CreateNewsAction">
             <forward name="success" path="index"/>
         </action>
 
-        <action path="/showNews" type="com.epam.mrymbayev.action.ShowNewsAction"
-                name="newsForm">
-            <forward name="success" path="/WEB-INF/pages/showNews.jsp"/>
+        <action path="/viewNews" type="com.epam.mrymbayev.action.ShowNewsAction">
+            <forward name="success" path="view.news"/>
         </action>
 
     </action-mappings>
@@ -43,7 +41,6 @@
         <set-property property="pathnames"
                       value="/org/apache/struts/validator/validator-rules.xml, /WEB-INF/validator-news.xml"/>
 
-    </plug-in>
--->
+    </plug-in>-->
 
 </struts-config>
