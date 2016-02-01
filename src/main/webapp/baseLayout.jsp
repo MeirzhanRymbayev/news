@@ -12,7 +12,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <script src="js/bootstrap.js" type="text/javascript"></script>
-    <%--<script src="js/equalHeights.js" type="text/javascript"></script>--%>
+    <script src="js/equalHeights.js" type="text/javascript"></script>
     <title><tiles:getAsString name="title" ignore="true"/></title>
 </head>
 <body>
@@ -20,7 +20,9 @@
     <tiles:insert attribute="header"/>
     <div class="row">
         <tiles:insert attribute="menu"/>
-        <tiles:insert attribute="body"/>
+        <div id="body" class="col-md-9" style="border: 1px solid black;">
+            <tiles:insert attribute="body"/>
+        </div>
     </div>
     <tiles:insert attribute="footer"/>
 </div>
