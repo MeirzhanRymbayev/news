@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class JdbcNewsDao implements NewsDao {
 
@@ -66,18 +65,34 @@ public class JdbcNewsDao implements NewsDao {
     }
 
     @Override
-    public News create(News news) {
-        return null;
+    public News insert(News news) {
+        PropertyManager pm = PropertyManager.getInstance();
+        pm.loadProperties("sql.properties");
+        String sql = pm.getProperty("news.create");
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, news.getTitle());
+            int affectedRowsCount = ps.executeUpdate();
+            if(affectedRowsCount == 1) log.trace("News was successfully created.");
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            long id = rs.getLong(1);
+            news.setId(id);
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return news;
     }
 
     @Override
-    public News update(long id) {
+    public News update(News news) {
         return null;
     }
 
     @Override
     public News save(News news) {
-        return null;
+        return (news.isNotPersisted())? insert(news) : update(news);
     }
 
     @Override

@@ -30,9 +30,9 @@ equalheight = function(container){
 }
 
 $(window).load(function() {
-    equalheight('#row');
+    equalheight('.content .row');
 });
 
 $(window).resize(function(){
-    equalheight('#row');
+    equalheight('.content .row');
 });

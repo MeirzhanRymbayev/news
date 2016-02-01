@@ -13,6 +13,7 @@ public class CreateNewsPageAction extends Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response){
 
+
         return mapping.findForward("success");
     }
 }

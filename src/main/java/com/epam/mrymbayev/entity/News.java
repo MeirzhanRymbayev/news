@@ -57,4 +57,22 @@ public class News {
     public String getText() {
         return text;
     }
+
+    public boolean isPersisted(){
+        return id !=0L;
+    }
+
+    public boolean isNotPersisted(){
+        return id == 0L;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isChecked=" + isChecked +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

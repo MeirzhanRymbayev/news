@@ -8,9 +8,9 @@ public interface NewsDao {
 
     News getById(long id);
 
-    News create(News news);
+    News insert(News news);
 
-    News update(long id);
+    News update(News news);
 
     News save(News news);
 
