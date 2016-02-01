@@ -11,9 +11,10 @@ import java.util.List;
 
 public class JdbcNewsDao implements NewsDao {
 
-    private static final Logger log = Logger.getLogger(JdbcNewsDao.class);
     PropertyManager propertyManager;
-    public static final String ORACLE_JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final Logger log = Logger.getLogger(JdbcNewsDao.class);
+    private static final String SQL_PROPERTIES = "sql.properties";
+    private static final String ORACLE_JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     private static final String USERNAME = "MEIR";
     private static final String PASSWORD = "sa";
     private static final String URL = "jdbc:oracle:thin:@//localhost:1521/XE";
@@ -27,7 +28,7 @@ public class JdbcNewsDao implements NewsDao {
             log.error("Jdbc driver was not found.");
             throw new NewsDaoException();
         }
-        log.info("JDBC driver was loaded successfully.");//TODO I'm here
+        log.info("JDBC driver was loaded successfully.");
     }
 
     public void getConnection(){
@@ -43,7 +44,7 @@ public class JdbcNewsDao implements NewsDao {
     public News getById(long id) {
         News news = new News();
         PropertyManager pm = PropertyManager.getInstance();
-        pm.loadProperties("sql.properties");
+        pm.loadProperties(SQL_PROPERTIES);
         String sql = pm.getProperty("news.getById");
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -51,7 +52,7 @@ public class JdbcNewsDao implements NewsDao {
             ResultSet resultSet = ps.executeQuery();
             resultSet.next();
             news.setTitle(resultSet.getString(2));
-            news.setText(resultSet.getString(3));
+            news.setContent(resultSet.getString(3));
 //            news.setChecked(resultSet.getBoolean(4));
             news.setId(resultSet.getLong(1));
 
@@ -67,11 +68,13 @@ public class JdbcNewsDao implements NewsDao {
     @Override
     public News insert(News news) {
         PropertyManager pm = PropertyManager.getInstance();
-        pm.loadProperties("sql.properties");
-        String sql = pm.getProperty("news.create");
+        pm.loadProperties(SQL_PROPERTIES);
+        String sql = pm.getProperty("news.insert");
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, news.getTitle());
+            ps.setString(2, news.getContent());
+            ps.setString(3, news.getBrief());
             int affectedRowsCount = ps.executeUpdate();
             if(affectedRowsCount == 1) log.trace("News was successfully created.");
             ResultSet rs = ps.getGeneratedKeys();
@@ -87,7 +90,22 @@ public class JdbcNewsDao implements NewsDao {
 
     @Override
     public News update(News news) {
-        return null;
+        PropertyManager pm = PropertyManager.getInstance();
+        pm.loadProperties(SQL_PROPERTIES);
+        String sql = pm.getProperty("news.update");//update NEWS set TITLE = ?, CONTENT = ? WHERE ID = ?;
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, news.getTitle());
+            ps.setString(2, news.getContent());
+            ps.setString(3, news.getBrief());
+            ps.setLong(4, news.getId());
+            int affectedRowsCount = ps.executeUpdate();
+            if(affectedRowsCount == 1) log.trace("News was successfully updated.");
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return news;
     }
 
     @Override
@@ -99,7 +117,7 @@ public class JdbcNewsDao implements NewsDao {
     public List<News> getAll() {
         List<News> newsList = new ArrayList<>();
         PropertyManager propertyManager = PropertyManager.getInstance();
-        propertyManager.loadProperties("sql.properties");
+        propertyManager.loadProperties(SQL_PROPERTIES);
         String sql = propertyManager.getProperty("news.getAll");
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -112,7 +130,7 @@ public class JdbcNewsDao implements NewsDao {
                 News news = new News();
                 news.setId(id);
                 news.setTitle(title);
-                news.setText(text);
+                news.setContent(text);
                 newsList.add(news);
             }
         } catch (SQLException e) {

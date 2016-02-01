@@ -5,10 +5,10 @@ import java.util.Date;
 public class News {
     private long id;
     private String title;
-//    private String brief;
-//    private Date date;
+    private String brief;
+    private Date date;
     private boolean isChecked;
-    private String text;
+    private String content;
 
     public long getId() {
         return id;
@@ -26,21 +26,21 @@ public class News {
         this.title = title;
     }
 
-//    public String getBrief() {
-//        return brief;
-//    }
-//
-//    public void setBrief(String brief) {
-//        this.brief = brief;
-//    }
+    public String getBrief() {
+        return brief;
+    }
 
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public boolean isChecked() {
         return isChecked;
@@ -50,12 +50,12 @@ public class News {
         isChecked = checked;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getText() {
-        return text;
+    public String getContent() {
+        return content;
     }
 
     public boolean isPersisted(){
@@ -66,13 +66,5 @@ public class News {
         return id == 0L;
     }
 
-    @Override
-    public String toString() {
-        return "News{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", isChecked=" + isChecked +
-                ", text='" + text + '\'' +
-                '}';
-    }
+
 }

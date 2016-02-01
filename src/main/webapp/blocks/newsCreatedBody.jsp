@@ -6,6 +6,6 @@
 
 <div class="col-md-9" style="border: 1px solid black;">
     <bean:write name="news" property="title"/>
+    <bean:write name="news" property="content"/>
     <%--<bean:write name="news" property="brief"/>--%>
-    <%--<bean:write name="news" property="content"/>--%>
 </div>

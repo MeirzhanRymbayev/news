@@ -1,7 +1,6 @@
 package com.epam.mrymbayev.action;
 
 import com.epam.mrymbayev.dao.JdbcNewsDao;
-import com.epam.mrymbayev.dao.NewsDao;
 import com.epam.mrymbayev.entity.News;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;

@@ -7,7 +7,7 @@ import java.util.Date;
 public class NewsForm extends ActionForm {
 
     private String title;
-//    private Date date;
+    private String date;
     private String brief;
     private String content;
 
@@ -19,13 +19,13 @@ public class NewsForm extends ActionForm {
         this.title = title;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getBrief() {
         return brief;

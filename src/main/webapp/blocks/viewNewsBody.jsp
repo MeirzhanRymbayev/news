@@ -8,5 +8,5 @@
 
 <c:forEach items="${newsList}" var="news">
     ${news.title}<br/>
-    ${news.text}<br/>
+    ${news.content}<br/>
 </c:forEach>
