@@ -5,7 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="col-md-9" style="border: 1px solid black;">
-    <bean:write name="news" property="title"/>
-    <bean:write name="news" property="content"/>
-    <%--<bean:write name="news" property="brief"/>--%>
+    <bean:write name="savedNews" property="title"/>
+    <bean:write name="savedNews" property="content"/>
+    <bean:write name="savedNews" property="brief"/>
+    <bean:write name="savedNews" property="dateOfCreation"/>
 </div>

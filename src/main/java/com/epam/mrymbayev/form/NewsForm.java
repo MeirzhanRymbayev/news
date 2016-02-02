@@ -1,13 +1,12 @@
 package com.epam.mrymbayev.form;
 
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
-import java.util.Date;
-
-public class NewsForm extends ActionForm {
+public class NewsForm extends ValidatorForm {
 
     private String title;
-    private String date;
+    private String dateOfCreation;
     private String brief;
     private String content;
 
@@ -19,12 +18,12 @@ public class NewsForm extends ActionForm {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateOfCreation() {
+        return dateOfCreation;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateOfCreation(String dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
     }
 
     public String getBrief() {

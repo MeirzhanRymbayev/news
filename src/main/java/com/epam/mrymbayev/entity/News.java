@@ -6,7 +6,7 @@ public class News {
     private long id;
     private String title;
     private String brief;
-    private Date date;
+    private Date dateOfCreation;
     private boolean isChecked;
     private String content;
 
@@ -34,12 +34,16 @@ public class News {
         this.brief = brief;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateOfCreation() {
+        return dateOfCreation;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateOfCreation(Date dateOfCreation) {
+        this.dateOfCreation = dateOfCreation;
+    }
+
+    public String getDate () {
+        return String.format("%tm/%td/%tY", dateOfCreation, dateOfCreation, dateOfCreation);
     }
 
     public boolean isChecked() {

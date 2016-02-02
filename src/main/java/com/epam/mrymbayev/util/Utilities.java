@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public final class Utilities {
@@ -13,14 +12,13 @@ public final class Utilities {
     private static final Logger log = Logger.getLogger(Utilities.class);
 
 
-    public static Calendar getCalendarFromString(String date, String stringFormat) {
-        Calendar result = Calendar.getInstance();
+    public static Date getDateFromString(String date, String stringFormat) {
+        Date result;
         try {
             SimpleDateFormat format = new SimpleDateFormat(stringFormat);
-            Date parse = format.parse(date);
-            result.setTime(parse);
+            result = format.parse(date);
         } catch (ParseException e) {
-            log.error("Can't parse date");
+            log.error("Error of date parsing");
             throw new UtilException(e);
         }
         return result;

@@ -7,6 +7,16 @@
 <%--@elvariable id="news" type="kz.epam.mrymbayev.entity.News"--%>
 
 <c:forEach items="${newsList}" var="news">
-    ${news.title}<br/>
-    ${news.content}<br/>
+    <div class="newsBlock">
+        <div class="title"><c:out value="${news.title}"/></div>
+        <div class="date"><c:out value="${news.dateOfCreation}"/></div>
+        <div class="post-content"><c:out value="${news.content}"/></div>
+        <div class="linksViewAll">
+            <a href="<c:url value="/viewNews.do?id=${news.id}"/>"><bean:message
+                    key="label.news.body.view.view"/></a>
+            <a href="<c:url value="/editNews.do?id=${news.id}"/>"><bean:message
+                    key="label.news.body.view.edit"/></a>
+            <input type="checkbox" name="checkbox" value="${news.id}" title="checkbox"/>
+        </div>
+    </div>
 </c:forEach>

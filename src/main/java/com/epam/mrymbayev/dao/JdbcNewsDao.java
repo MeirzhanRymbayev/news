@@ -51,10 +51,12 @@ public class JdbcNewsDao implements NewsDao {
             ps.setLong(1, id);
             ResultSet resultSet = ps.executeQuery();
             resultSet.next();
+            news.setId(resultSet.getLong(1));
             news.setTitle(resultSet.getString(2));
             news.setContent(resultSet.getString(3));
+            news.setBrief(resultSet.getString(4));
+            news.setDateOfCreation(resultSet.getDate(5));
 //            news.setChecked(resultSet.getBoolean(4));
-            news.setId(resultSet.getLong(1));
 
 //            resultSet.close();
 //            ps.close();
@@ -75,6 +77,7 @@ public class JdbcNewsDao implements NewsDao {
             ps.setString(1, news.getTitle());
             ps.setString(2, news.getContent());
             ps.setString(3, news.getBrief());
+            ps.setDate(4, new java.sql.Date(news.getDateOfCreation().getTime()));
             int affectedRowsCount = ps.executeUpdate();
             if(affectedRowsCount == 1) log.trace("News was successfully created.");
             ResultSet rs = ps.getGeneratedKeys();
@@ -126,11 +129,15 @@ public class JdbcNewsDao implements NewsDao {
             while (rs.next()){
                 long id = rs.getLong(1);
                 String title = rs.getString(2);
-                String text = rs.getString(3);
+                String content = rs.getString(3);
+                Date date = rs.getDate(5);
+                String brief = rs.getString(4);
                 News news = new News();
                 news.setId(id);
                 news.setTitle(title);
-                news.setContent(text);
+                news.setContent(content);
+                news.setBrief(brief);
+                news.setDateOfCreation(date);
                 newsList.add(news);
             }
         } catch (SQLException e) {

@@ -9,16 +9,16 @@ import org.apache.struts.action.ActionMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 public class ShowNewsAction extends Action {
     @Override
-    public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
         JdbcNewsDao newsDao = new JdbcNewsDao();
         newsDao.getConnection();
-        List<News> newsList = newsDao.getAll();
-        request.setAttribute("newsList", newsList);
+        String id =  request.getParameter("id");
+
+        News newsById = newsDao.getById(Long.parseLong(id));
+        request.setAttribute("news", newsById);
         return mapping.findForward("success");
     }
 }

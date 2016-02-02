@@ -2,3 +2,159 @@
     float: right;
 }
 
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+}
+
+div.header {
+    border: 2px solid black;
+    font-family: Tahoma, serif;
+    margin: 10px;
+    padding: 10px;
+    clear: both;
+}
+
+.header-title {
+    font-size: large;
+    font-weight: bold;
+    float: left;
+}
+
+p.header2 {
+    float: right;
+}
+
+div.menu {
+    background-color: lightskyblue;
+    min-width: 20px;
+    margin: 10px;
+    width: 15%;
+    float: left;
+}
+
+p.middle {
+    background-color: darkgrey;
+    margin-left: 15px;
+    text-align: center;
+}
+
+ul.list {
+    min-width: 15px;
+    background-color: whitesmoke;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+div.body {
+    margin: 10px;
+    width: 80%;
+    border: 2px solid gray;
+    float: right;
+}
+
+div.error {
+    clear: both;
+    margin: 5px;
+    text-align: center;
+    color: red;
+}
+
+div.block {
+    clear: both;
+    margin: 10px;
+}
+
+div.blockLeft {
+    float: left;
+    min-width: 15px;
+    margin: 10px;
+    width: 10%;
+}
+
+div.blockRight {
+    float: right;
+    min-width: 30px;
+    margin: 10px;
+    width: 80%;
+    word-wrap: break-word;
+}
+
+div.newsBlock {
+    clear: both;
+    margin: 10px;
+}
+
+div.title {
+    margin: 5px;
+    clear: left;
+    float: left;
+    font-weight: bold;
+}
+
+div.date {
+    margin: 5px;
+    clear: right;
+    float: right;
+
+}
+
+div.post-content {
+    clear: both;
+    margin: 5px;
+}
+
+div.links {
+    clear: both;
+    margin: 10px auto;
+    display: table;
+}
+
+div.linksViewAll {
+    clear: both;
+    margin: 10px auto;
+    float: right;
+}
+
+div.buttons {
+    clear: both;
+    margin: 0 auto;
+    display: table;
+}
+
+input {
+    margin: 0 8px;
+}
+
+div.footer {
+    font-size: medium;
+    margin: 10px;
+    border: 2px solid black;
+    clear: both;
+    text-align: center;
+    padding: 5px;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}

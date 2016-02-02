@@ -1,0 +1,13 @@
+<form-validation>
+    <formset>
+        <form name="newsForm">
+            <field property="title" depends="required, email">
+                <msg name="required" key="err.user.email.required" />
+                <msg name="email" key="err.user.email.invalid" />
+            </field>
+            <field property="content" depends="required">
+                <msg name="required" key="err.user.email.required"/>
+            </field>
+        </form>
+    </formset>
+</form-validation>

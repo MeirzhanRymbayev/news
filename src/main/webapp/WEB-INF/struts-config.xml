@@ -19,20 +19,35 @@
     <action-mappings>
 
         <action path="/createNewsPage"
-                type="com.epam.mrymbayev.action.CreateNewsPageAction"
-                name="newsForm">
+                type="com.epam.mrymbayev.action.CreateNewsPageAction">
             <forward name="success" path="create.news"/>
         </action>
 
         <action path="/createNews"
                 type="com.epam.mrymbayev.action.CreateNewsAction"
-                name="newsForm">
+                name="newsForm"
+                input="/createNews.do"
+                validate="true"
+        >
             <forward name="success" path="news.created"/>
         </action>
 
-        <action path="/viewNews" type="com.epam.mrymbayev.action.ShowNewsAction">
-            <forward name="success" path="view.news"/>
+        <action path="/viewNewsList" type="com.epam.mrymbayev.action.ShowNewsListAction">
+            <forward name="success" path="view.news.list"/>
         </action>
+
+        <action path="/viewNews" type="com.epam.mrymbayev.action.ShowNewsAction">
+            <forward name="success" path="view.news.by.id"/>
+        </action>
+
+        <action path="/Locale"
+                type="com.epam.mrymbayev.action.SetLanguage"
+                parameter="lang">
+            <forward name="success" path="/viewNewsList.do"/>
+        </action>
+
+
+
 
     </action-mappings>
 
@@ -44,13 +59,10 @@
         <set-property value="/WEB-INF/tiles-defs.xml" property="definitions-config"/>
     </plug-in>
 
-
-
-    <!-- Struts validator -->
-    <!--<plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
+     <!--Struts validator -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn" >
         <set-property property="pathnames"
                       value="/org/apache/struts/validator/validator-rules.xml, /WEB-INF/validator-news.xml"/>
-
-    </plug-in>-->
+    </plug-in>
 
 </struts-config>

@@ -20,7 +20,7 @@
     <tiles:insert attribute="header"/>
     <div class="row">
         <tiles:insert attribute="menu"/>
-        <div id="body" class="col-md-9" style="border: 1px solid black;">
+        <div class="col-md-9" style="border: 1px solid black;">
             <tiles:insert attribute="body"/>
         </div>
     </div>
