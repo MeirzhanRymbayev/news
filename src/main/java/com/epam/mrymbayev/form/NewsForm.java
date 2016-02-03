@@ -1,6 +1,6 @@
 package com.epam.mrymbayev.form;
 
-import org.apache.struts.action.ActionForm;
+
 import org.apache.struts.validator.ValidatorForm;
 
 public class NewsForm extends ValidatorForm {
@@ -9,7 +9,6 @@ public class NewsForm extends ValidatorForm {
     private String dateOfCreation;
     private String brief;
     private String content;
-
     public String getTitle() {
         return title;
     }

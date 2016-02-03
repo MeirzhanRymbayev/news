@@ -57,9 +57,7 @@ public class JdbcNewsDao implements NewsDao {
             news.setBrief(resultSet.getString(4));
             news.setDateOfCreation(resultSet.getDate(5));
 //            news.setChecked(resultSet.getBoolean(4));
-
-//            resultSet.close();
-//            ps.close();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new NewsDaoException("Can't fulfil this request", e);

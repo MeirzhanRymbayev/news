@@ -14,13 +14,13 @@
             <html:text property="title" size="20" maxlength="100" styleId="title" styleClass="form-control"/>
         </div>
         <div class="form-group">
-            <label for="content"><bean:message key="news.date"/></label>
-            <html:text property="dateOfCreation" size="20" maxlength="100" styleId="content"
+            <label for="dateOfCreation"><bean:message key="news.date"/></label>
+            <html:text property="dateOfCreation" size="20" maxlength="100" styleId="dateOfCreation"
                        styleClass="form-control"/>
         </div>
         <div class="form-group">
-            <label for="content"><bean:message key="news.brief"/></label>
-            <html:textarea property="brief" styleId="content" styleClass="form-control"/>
+            <label for="brief"><bean:message key="news.brief"/></label>
+            <html:textarea property="brief" styleId="brief" styleClass="form-control"/>
         </div>
         <div class="form-group">
             <label for="content"><bean:message key="news.content"/></label>

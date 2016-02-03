@@ -26,7 +26,7 @@
         <action path="/createNews"
                 type="com.epam.mrymbayev.action.CreateNewsAction"
                 name="newsForm"
-                input="/createNews.do"
+                input="/createNewsPage.do"
                 validate="true"
         >
             <forward name="success" path="news.created"/>
