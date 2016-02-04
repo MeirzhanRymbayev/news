@@ -16,4 +16,6 @@ public interface NewsDao {
 
     List<News> getAll();
 
+    boolean delete(long id);
+
 }

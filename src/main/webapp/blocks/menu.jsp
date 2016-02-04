@@ -8,7 +8,7 @@
         <p><bean:message key="news.news"/></p>
         <ul>
             <li><a href="/viewNewsList.do"><bean:message key="menu.news.list"/></a></li>
-            <li><a href="/createNewsPage.do"><bean:message key="menu.add.news"/></a></li>
+            <li><a href="/editNewsPage.do"><bean:message key="menu.add.news"/></a></li>
         </ul>
     </div>
 </div>

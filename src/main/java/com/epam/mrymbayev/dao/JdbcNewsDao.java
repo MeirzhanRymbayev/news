@@ -70,18 +70,21 @@ public class JdbcNewsDao implements NewsDao {
         PropertyManager pm = PropertyManager.getInstance();
         pm.loadProperties(SQL_PROPERTIES);
         String sql = pm.getProperty("news.insert");
+        String generatedColumns[] = {"ID"};
         try {
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql, generatedColumns);
             ps.setString(1, news.getTitle());
             ps.setString(2, news.getContent());
             ps.setString(3, news.getBrief());
             ps.setDate(4, new java.sql.Date(news.getDateOfCreation().getTime()));
             int affectedRowsCount = ps.executeUpdate();
             if(affectedRowsCount == 1) log.trace("News was successfully created.");
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            long id = rs.getLong(1);
-            news.setId(id);
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+            long id;
+            if (generatedKeys.next()) {
+                id = generatedKeys.getLong(1);
+                news.setId(id);
+            }
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +102,8 @@ public class JdbcNewsDao implements NewsDao {
             ps.setString(1, news.getTitle());
             ps.setString(2, news.getContent());
             ps.setString(3, news.getBrief());
-            ps.setLong(4, news.getId());
+            ps.setDate(4, new java.sql.Date(news.getDateOfCreation().getTime()));
+            ps.setLong(5, news.getId());
             int affectedRowsCount = ps.executeUpdate();
             if(affectedRowsCount == 1) log.trace("News was successfully updated.");
             ps.close();
@@ -145,4 +149,21 @@ public class JdbcNewsDao implements NewsDao {
         return newsList;
     }
 
+    @Override
+    public boolean delete(long id){
+        PropertyManager pm = PropertyManager.getInstance();
+        pm.loadProperties(SQL_PROPERTIES);
+        String sql = pm.getProperty("news.delete");// delete from news where id = ?
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, id);
+            int affectedRowsCount = ps.executeUpdate();
+            if(affectedRowsCount == 1) log.trace("News was successfully deleted.");
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }

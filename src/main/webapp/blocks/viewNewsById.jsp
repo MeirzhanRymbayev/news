@@ -23,7 +23,7 @@
 </div>
 <div class="links">
     <input type="button" value="<bean:message key="button.edit"/>"
-           onclick="window.location = '<c:url value="/editNews.do?id=${news.id}"/>'"/>
+           onclick="window.location = '<c:url value="/editNewsPage.do?id=${news.id}"/>'"/>
     <input type="button" value="<bean:message key="button.delete"/>"
            onclick="window.location = '<c:url value="/deleteNews.do?id=${news.id}"/>'"/>
 </div>

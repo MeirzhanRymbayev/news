@@ -18,18 +18,18 @@
 
     <action-mappings>
 
-        <action path="/createNewsPage"
-                type="com.epam.mrymbayev.action.CreateNewsPageAction">
-            <forward name="success" path="create.news"/>
+        <action path="/editNewsPage"
+                type="com.epam.mrymbayev.action.EditNewsPageAction">
+            <forward name="success" path="edit.news"/>
         </action>
 
-        <action path="/createNews"
-                type="com.epam.mrymbayev.action.CreateNewsAction"
+        <action path="/editNews"
+                type="com.epam.mrymbayev.action.EditNewsAction"
                 name="newsForm"
-                input="/createNewsPage.do"
-                validate="true"
-        >
-            <forward name="success" path="news.created"/>
+                input="/editNewsPage.do"
+                validate="true">
+                <forward name="created" path="news.created"/>
+                <forward name="edited" path="/viewNewsList.do"/>
         </action>
 
         <action path="/viewNewsList" type="com.epam.mrymbayev.action.ShowNewsListAction">
@@ -46,7 +46,9 @@
             <forward name="success" path="/viewNewsList.do"/>
         </action>
 
-
+        <action path="/deleteNews" type="com.epam.mrymbayev.action.DeleteNewsAction">
+            <forward name="success" path="/viewNewsList.do"/>
+        </action>
 
 
     </action-mappings>

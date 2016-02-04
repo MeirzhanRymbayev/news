@@ -13,30 +13,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-public class CreateNewsAction extends Action {
+public class EditNewsAction extends Action {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response){
+                                 HttpServletRequest request, HttpServletResponse response) {
 
+        JdbcNewsDao newsDao = new JdbcNewsDao();
+        newsDao.getConnection();
         NewsForm newsForm = (NewsForm) form;
         News news = new News();
+        String idString = request.getParameter("id");
 
+        if(idString != null && !idString.isEmpty()) {
+            long id;
+            try {
+                id = Long.parseLong(idString);
+            } catch (NumberFormatException e) {
+                throw new RuntimeException(e);
+            }
+            news.setId(id);
+        }
         news.setTitle(newsForm.getTitle());
         news.setBrief(newsForm.getBrief());
         news.setContent(newsForm.getContent());
         String dateString = newsForm.getDateOfCreation();
         String dateS = dateString.replaceAll("/", "-");
-        Date date = Utilities.getDateFromString(dateS, "yyyy-mm-dd");
+        System.out.println("\n\n\n\n\n" + "dateS = " + dateS);
+        Date date = Utilities.getDateFromString(dateS, "MM-dd-yyyy");
+        System.out.println("\n\n\n\n\n" + "date = " + date);
         news.setDateOfCreation(date);
 
-        System.out.println(news);
-        JdbcNewsDao newsDao = new JdbcNewsDao();
-        newsDao.getConnection();
         News savedNews = newsDao.save(news);
 
         request.setAttribute("savedNews", savedNews); //TODO чтобы отобразить в странице об успешном добавлении
 
-        return mapping.findForward("success");
+        return mapping.findForward("edited");
     }
-
 }
