@@ -7,15 +7,16 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.springframework.web.struts.ActionSupport;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class EditNewsPageAction extends Action {
+public class EditNewsPageAction extends ActionSupport {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) {
-
-        JdbcNewsDao newsDao = new JdbcNewsDao();
+        JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
+//        JdbcNewsDao newsDao = new JdbcNewsDao();
         newsDao.getConnection();
         String id = request.getParameter("id");
         if(id != null && !id.isEmpty()){
