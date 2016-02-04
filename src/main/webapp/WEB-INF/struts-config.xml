@@ -66,5 +66,10 @@
         <set-property property="pathnames"
                       value="/org/apache/struts/validator/validator-rules.xml, /WEB-INF/validator-news.xml"/>
     </plug-in>
+    <!-- Spring Struts plugin -->
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation"
+                      value="/WEB-INF/SpringBeans.xml" />
+    </plug-in>
 
 </struts-config>

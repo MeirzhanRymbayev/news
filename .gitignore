@@ -3,7 +3,7 @@
 .settings/
 .iml
 .classpath
-target
+target/
 
 #Java Files
 *.jar
