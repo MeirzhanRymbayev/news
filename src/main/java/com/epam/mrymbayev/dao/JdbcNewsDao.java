@@ -126,7 +126,6 @@ public class JdbcNewsDao implements NewsDao {
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            rs.next();
             while (rs.next()){
                 long id = rs.getLong(1);
                 String title = rs.getString(2);
