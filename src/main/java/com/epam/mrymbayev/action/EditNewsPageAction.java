@@ -16,7 +16,6 @@ public class EditNewsPageAction extends ActionSupport {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) {
         JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
-//        JdbcNewsDao newsDao = new JdbcNewsDao();
         newsDao.getConnection();
         String id = request.getParameter("id");
         if(id != null && !id.isEmpty()){

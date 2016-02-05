@@ -14,7 +14,6 @@ public class DeleteNewsAction extends ActionSupport {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        JdbcNewsDao newsDao = new JdbcNewsDao();
         JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
         newsDao.getConnection();
 

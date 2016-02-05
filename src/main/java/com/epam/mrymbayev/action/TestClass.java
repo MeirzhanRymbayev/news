@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TestDate {
+public class TestClass {
     public static void main(String[] args) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
         Date date = simpleDateFormat.parse("09-05-2014", new ParsePosition(0));

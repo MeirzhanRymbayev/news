@@ -4,8 +4,7 @@
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <!-- Beans Declaration -->
-    <bean id="jbdcNewsDao" class="com.epam.mrymbayev.dao.JdbcNewsDao" >
-        <!--<property name="customerDao" ref="customerDao" />-->
+    <bean id="jbdcNewsDao" class="com.epam.mrymbayev.dao.JdbcNewsDao">
     </bean>
 
 </beans>

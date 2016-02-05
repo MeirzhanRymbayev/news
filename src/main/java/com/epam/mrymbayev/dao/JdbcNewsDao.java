@@ -11,19 +11,25 @@ import java.util.List;
 
 public class JdbcNewsDao implements NewsDao {
 
-    PropertyManager propertyManager;
+    private PropertyManager pm;
     private static final Logger log = Logger.getLogger(JdbcNewsDao.class);
     private static final String SQL_PROPERTIES = "sql.properties";
-    private static final String ORACLE_JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-    private static final String USERNAME = "MEIR";
-    private static final String PASSWORD = "sa";
-    private static final String URL = "jdbc:oracle:thin:@//localhost:1521/XE";
+    private static String jdbcDriver;
+    private static String username;
+    private static String password;
+    private static String url;
 
-    Connection connection;
+    private Connection connection;
 
     public JdbcNewsDao(){
         try {
-            Class.forName(ORACLE_JDBC_DRIVER);
+            pm = PropertyManager.getInstance();
+            pm.loadProperties(SQL_PROPERTIES);
+            jdbcDriver = pm.getProperty("db.jdbc.driver");
+            Class.forName(jdbcDriver);
+            username = pm.getProperty("db.username");
+            password = pm.getProperty("db.password");
+            url = pm.getProperty("db.url");
         } catch (ClassNotFoundException e) {
             log.error("Jdbc driver was not found.");
             throw new NewsDaoException();
@@ -33,7 +39,7 @@ public class JdbcNewsDao implements NewsDao {
 
     public void getConnection(){
         try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             log.error("Can't get the connection.");
             e.printStackTrace();
@@ -43,8 +49,6 @@ public class JdbcNewsDao implements NewsDao {
     @Override
     public News getById(long id) {
         News news = new News();
-        PropertyManager pm = PropertyManager.getInstance();
-        pm.loadProperties(SQL_PROPERTIES);
         String sql = pm.getProperty("news.getById");
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -56,7 +60,6 @@ public class JdbcNewsDao implements NewsDao {
             news.setContent(resultSet.getString(3));
             news.setBrief(resultSet.getString(4));
             news.setDateOfCreation(resultSet.getDate(5));
-//            news.setChecked(resultSet.getBoolean(4));
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,8 +70,6 @@ public class JdbcNewsDao implements NewsDao {
 
     @Override
     public News insert(News news) {
-        PropertyManager pm = PropertyManager.getInstance();
-        pm.loadProperties(SQL_PROPERTIES);
         String sql = pm.getProperty("news.insert");
         String generatedColumns[] = {"ID"};
         try {
@@ -88,14 +89,13 @@ public class JdbcNewsDao implements NewsDao {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new NewsDaoException("Can't perform insert operation.");
         }
         return news;
     }
 
     @Override
     public News update(News news) {
-        PropertyManager pm = PropertyManager.getInstance();
-        pm.loadProperties(SQL_PROPERTIES);
         String sql = pm.getProperty("news.update");//update NEWS set TITLE = ?, CONTENT = ? WHERE ID = ?;
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -109,6 +109,7 @@ public class JdbcNewsDao implements NewsDao {
             ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new NewsDaoException("Can't perform update operation");
         }
         return news;
     }
@@ -121,9 +122,7 @@ public class JdbcNewsDao implements NewsDao {
     @Override
     public List<News> getAll() {
         List<News> newsList = new ArrayList<>();
-        PropertyManager propertyManager = PropertyManager.getInstance();
-        propertyManager.loadProperties(SQL_PROPERTIES);
-        String sql = propertyManager.getProperty("news.getAll");
+        String sql = pm.getProperty("news.getAll");
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -151,8 +150,6 @@ public class JdbcNewsDao implements NewsDao {
 
     @Override
     public boolean delete(long id){
-        PropertyManager pm = PropertyManager.getInstance();
-        pm.loadProperties(SQL_PROPERTIES);
         String sql = pm.getProperty("news.delete");// delete from news where id = ?
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -163,6 +160,7 @@ public class JdbcNewsDao implements NewsDao {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+//            throw new NewsDaoException("Can't perform delete operation.");
         }
         return true;
     }

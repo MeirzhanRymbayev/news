@@ -19,7 +19,6 @@ public class EditNewsAction extends ActionSupport {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) {
         JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
-//        JdbcNewsDao newsDao = new JdbcNewsDao();
         newsDao.getConnection();
         NewsForm newsForm = (NewsForm) form;
         News news = new News();

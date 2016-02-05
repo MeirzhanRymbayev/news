@@ -17,10 +17,8 @@ public class ShowNewsListAction extends ActionSupport {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
         JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
-//        JdbcNewsDao newsDao = new JdbcNewsDao();
         newsDao.getConnection();
-
-        if(request.getAttribute("id") != null){
+        if (request.getAttribute("id") != null) {
             long id = (long) request.getAttribute("id");
             News newsById = newsDao.getById(id);
             request.setAttribute("news", newsById);
