@@ -17,7 +17,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <!--Data source declaration start -->
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
-        <property name="location" value="sql.properties"/>
+        <property name="location" value="classpath:sql.properties"/>
     </bean>
 
     <bean id="datasource"

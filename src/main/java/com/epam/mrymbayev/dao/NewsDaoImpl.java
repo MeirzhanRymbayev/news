@@ -36,11 +36,13 @@ public class NewsDaoImpl extends HibernateDaoSupport
 
     @Override
     public List<News> getAll() {
-        return (List<News>) getHibernateTemplate().find("from NEWS");
+        return (List<News>) getHibernateTemplate().find("from News");
     }
 
     @Override
     public boolean delete(long id) {
-        return false;
+        News news = getHibernateTemplate().get(News.class, id);
+        getHibernateTemplate().delete(news);
+        return true; // TODO optimize
     }
 }

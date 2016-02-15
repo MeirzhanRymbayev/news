@@ -1,5 +1,6 @@
 package com.epam.mrymbayev.action;
 
+import com.epam.mrymbayev.bo.impl.NewsBo;
 import com.epam.mrymbayev.dao.JdbcNewsDao;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -14,17 +15,18 @@ public class DeleteNewsAction extends ActionSupport {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-        JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
-        newsDao.getConnection();
+        NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
+
+//        newsDao.getConnection();
 
         String[] ids = request.getParameterValues("checkbox");
         if (ids.length > 1) {
             for (String id : ids) {
-                newsDao.delete(Long.parseLong(id));
+                newsBo.delete(Long.parseLong(id));
             }
         } else {
             String id = request.getParameter("checkbox");
-            newsDao.delete(Long.parseLong(id));
+            newsBo.delete(Long.parseLong(id));
         }
         return mapping.findForward("success");
     }
