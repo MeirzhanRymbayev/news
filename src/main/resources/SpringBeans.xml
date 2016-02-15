@@ -3,8 +3,51 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <!-- Beans Declaration -->
-    <bean id="jbdcNewsDao" class="com.epam.mrymbayev.dao.JdbcNewsDao">
+    <!-- Beans Declaration start-->
+    <!--<bean id="jbdcNewsDao" class="com.epam.mrymbayev.dao.JdbcNewsDao">
+    </bean>-->
+    <bean id="newsBo" class="com.epam.mrymbayev.bo.impl.NewsBoImpl">
+        <property name="newsDao" ref="newsDao"/>
     </bean>
+
+    <bean id="newsDao" class="com.epam.mrymbayev.dao.NewsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--Beans declaration end-->
+
+    <!--Data source declaration start -->
+    <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="location" value="sql.properties"/>
+    </bean>
+
+    <bean id="datasource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${db.jdbc.driver}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+    </bean>
+    <!--Data source declaration start -->
+
+    <!--Hibernate session factory start-->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="show_sql">true</prop>
+            </props>
+        </property>
+
+        <property name="mappingResources">
+            <list>
+                <value>News.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!--Hibernate session factory end-->
+
 
 </beans>

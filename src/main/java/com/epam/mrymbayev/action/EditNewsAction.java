@@ -1,5 +1,6 @@
 package com.epam.mrymbayev.action;
 
+import com.epam.mrymbayev.bo.impl.NewsBo;
 import com.epam.mrymbayev.dao.JdbcNewsDao;
 import com.epam.mrymbayev.entity.News;
 import com.epam.mrymbayev.form.NewsForm;
@@ -18,8 +19,8 @@ public class EditNewsAction extends ActionSupport {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) {
-        JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
-        newsDao.getConnection();
+        NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
+//        newsBo.getConnection();
         NewsForm newsForm = (NewsForm) form;
         News news = new News();
         String idString = request.getParameter("id");
@@ -43,7 +44,7 @@ public class EditNewsAction extends ActionSupport {
         System.out.println("\n\n\n\n\n" + "date = " + date);
         news.setDateOfCreation(date);
 
-        News savedNews = newsDao.save(news);
+        News savedNews = newsBo.save(news);
 
         request.setAttribute("savedNews", savedNews); //TODO чтобы отобразить в странице об успешном добавлении
 
