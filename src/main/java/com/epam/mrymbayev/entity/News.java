@@ -1,8 +1,9 @@
 package com.epam.mrymbayev.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class News {
+public class News implements Serializable {
     private long id;
     private String title;
     private String brief;
