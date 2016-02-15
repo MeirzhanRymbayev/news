@@ -24,12 +24,14 @@ public class NewsDaoImpl extends HibernateDaoSupport
 
     @Override
     public News update(News news) {
-        return null;
+        Serializable savedNews = getHibernateTemplate().save(news);
+        return (News) savedNews;
     }
 
     @Override
     public News save(News news) {
-        return null;
+        Serializable savedNews = getHibernateTemplate().save(news);
+        return (News) savedNews;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.epam.mrymbayev.action;
 
+import com.epam.mrymbayev.bo.impl.NewsBo;
 import com.epam.mrymbayev.dao.JdbcNewsDao;
 import com.epam.mrymbayev.entity.News;
 import org.apache.struts.action.Action;
@@ -16,15 +17,15 @@ public class ShowNewsListAction extends ActionSupport {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-        JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
-        newsDao.getConnection();
+        NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
+//        newsBo.getConnection();
         if (request.getAttribute("id") != null) {
             long id = (long) request.getAttribute("id");
-            News newsById = newsDao.getById(id);
+            News newsById = newsBo.getById(id);
             request.setAttribute("news", newsById);
             return mapping.findForward("viewNewsById");
         }
-        List<News> newsList = newsDao.getAll();
+        List<News> newsList = newsBo.getAll();
         request.setAttribute("newsList", newsList);
         return mapping.findForward("success");
     }

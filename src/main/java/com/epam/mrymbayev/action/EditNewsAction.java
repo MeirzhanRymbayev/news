@@ -39,9 +39,7 @@ public class EditNewsAction extends ActionSupport {
         news.setContent(newsForm.getContent());
         String dateString = newsForm.getDateOfCreation();
         String dateS = dateString.replaceAll("/", "-");
-        System.out.println("\n\n\n\n\n" + "dateS = " + dateS);
         Date date = Utilities.getDateFromString(dateS, "MM-dd-yyyy");
-        System.out.println("\n\n\n\n\n" + "date = " + date);
         news.setDateOfCreation(date);
 
         News savedNews = newsBo.save(news);
