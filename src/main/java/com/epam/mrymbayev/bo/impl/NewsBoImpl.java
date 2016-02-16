@@ -1,14 +1,14 @@
 package com.epam.mrymbayev.bo.impl;
 
-import com.epam.mrymbayev.dao.NewsDao;
+import com.epam.mrymbayev.dao.NewsDaoForHiber;
 import com.epam.mrymbayev.entity.News;
 
 import java.util.List;
 
 public class NewsBoImpl implements NewsBo {
-    NewsDao newsDao;
+    private NewsDaoForHiber newsDao;
 
-    public void setNewsDao(NewsDao newsDao) {
+    public void setNewsDao(NewsDaoForHiber newsDao) {
         this.newsDao = newsDao;
     }
 
@@ -18,18 +18,8 @@ public class NewsBoImpl implements NewsBo {
     }
 
     @Override
-    public News insert(News news) {
-        return newsDao.insert(news);
-    }
-
-    @Override
-    public News update(News news) {
-        return newsDao.update(news);
-    }
-
-    @Override
-    public News save(News news) {
-        return newsDao.save(news);
+    public void save(News news) {
+        newsDao.save(news);
     }
 
     @Override

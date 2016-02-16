@@ -8,11 +8,7 @@ public interface NewsBo {
 
     News getById(long id);
 
-    News insert(News news);
-
-    News update(News news);
-
-    News save(News news);
+    void save(News news);
 
     List<News> getAll();
 

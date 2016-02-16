@@ -7,7 +7,9 @@
            catalog="MEIR">
         <id name="id" type="long">
             <column name="ID"/>
-            <generator class="identity"/>
+            <generator class="sequence">
+                <param name="sequence">NEWS_SEQ</param>
+            </generator>
         </id>
         <property name="title" type="string">
             <column name="TITLE" length="255" not-null="true"/>

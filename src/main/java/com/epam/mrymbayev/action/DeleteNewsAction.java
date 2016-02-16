@@ -17,8 +17,6 @@ public class DeleteNewsAction extends ActionSupport {
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
         NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
 
-//        newsDao.getConnection();
-
         String[] ids = request.getParameterValues("checkbox");
         if (ids.length > 1) {
             for (String id : ids) {

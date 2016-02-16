@@ -1,7 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- Beans Declaration start-->
     <!--<bean id="jbdcNewsDao" class="com.epam.mrymbayev.dao.JdbcNewsDao">
@@ -10,7 +10,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
         <property name="newsDao" ref="newsDao"/>
     </bean>
 
-    <bean id="newsDao" class="com.epam.mrymbayev.dao.NewsDaoImpl">
+    <bean id="newsDao" class="com.epam.mrymbayev.dao.NewsDaoForHiberImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <!--Beans declaration end-->
@@ -39,6 +39,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
                 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
                 <prop key="show_sql">true</prop>
             </props>
+
         </property>
 
         <property name="mappingResources">
