@@ -3,6 +3,7 @@ package com.epam.mrymbayev.dao;
 
 import com.epam.mrymbayev.entity.News;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class NewsDaoForHiberImpl extends HibernateDaoSupport
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
         News news = (News) session.get(News.class, id);
+        session.getTransaction().commit();
         session.close();
         return news;
     }
@@ -31,7 +33,12 @@ public class NewsDaoForHiberImpl extends HibernateDaoSupport
     @SuppressWarnings("unchecked")
     @Override
     public List<News> getAll() {
-        return (List<News>) getHibernateTemplate().find("from News");
+        Session session = getSessionFactory().openSession();
+        List<News> list = session.createCriteria(News.class)
+                .addOrder(Order.asc("dateOfCreation"))
+                .list();
+        session.close();
+        return list;
     }
 
     @Override
@@ -39,9 +46,8 @@ public class NewsDaoForHiberImpl extends HibernateDaoSupport
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
         News newsForDelete = (News) session.get(News.class, id);
-//        News news = getHibernateTemplate().get(News.class, id);
-//        getHibernateTemplate().delete(newsForDelete);
         session.delete(newsForDelete);
+        session.getTransaction().commit();
         session.close();
         return true; // TODO optimize
     }
