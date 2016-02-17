@@ -3,9 +3,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- Beans Declaration start-->
-    <!--<bean id="jbdcNewsDao" class="com.epam.mrymbayev.dao.JdbcNewsDao">
-    </bean>-->
     <bean id="newsBo" class="com.epam.mrymbayev.bo.impl.NewsBoImpl">
         <property name="newsDao" ref="newsDao"/>
     </bean>
@@ -42,11 +39,11 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
         </property>
 
-        <property name="mappingResources">
-            <list>
-                <value>News.hbm.xml</value>
-            </list>
-        </property>
+        <!--<property name="mappingResources">-->
+            <!--<list>-->
+                <!--<value>News.hbm.xml</value>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
     <!--Hibernate session factory end-->
 

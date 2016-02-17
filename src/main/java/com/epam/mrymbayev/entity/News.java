@@ -1,14 +1,34 @@
 package com.epam.mrymbayev.entity;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
 public class News implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "NEWS_SEQ")
+    @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "news_seq")
+    @Column(name = "ID", unique = true, nullable = false)
+    @Type(type = "long")
     private long id;
+
+    @Column(name = "TITLE", nullable = false)
     private String title;
+
+    @Column(name = "BRIEF", nullable = false)
     private String brief;
+
+    @Column(name = "DATE_OF_CREATION", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date dateOfCreation;
+
+
     private boolean isChecked;
+
+    @Column(name = "CONTENT", nullable = false)
     private String content;
 
     public long getId() {
