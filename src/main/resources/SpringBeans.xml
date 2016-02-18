@@ -1,7 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="newsBo" class="com.epam.mrymbayev.bo.impl.NewsBoImpl">
         <property name="newsDao" ref="newsDao"/>
@@ -39,11 +38,11 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
         </property>
 
-        <!--<property name="mappingResources">-->
-            <!--<list>-->
-                <!--<value>News.hbm.xml</value>-->
-            <!--</list>-->
-        <!--</property>-->
+        <property name="annotatedClasses">
+            <list>
+                <value>com.epam.mrymbayev.entity.News</value>
+            </list>
+        </property>
     </bean>
     <!--Hibernate session factory end-->
 

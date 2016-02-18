@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Table(name = "NEWS", catalog = "MEIR")
 public class News implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "NEWS_SEQ")
@@ -24,9 +25,6 @@ public class News implements Serializable {
     @Column(name = "DATE_OF_CREATION", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dateOfCreation;
-
-
-    private boolean isChecked;
 
     @Column(name = "CONTENT", nullable = false)
     private String content;
@@ -63,16 +61,8 @@ public class News implements Serializable {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public String getDate () {
+    public String getDate() {
         return String.format("%tm/%td/%tY", dateOfCreation, dateOfCreation, dateOfCreation);
-    }
-
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
     }
 
     public void setContent(String content) {
@@ -83,11 +73,11 @@ public class News implements Serializable {
         return content;
     }
 
-    public boolean isPersisted(){
-        return id !=0L;
+    public boolean isPersisted() {
+        return id != 0L;
     }
 
-    public boolean isNotPersisted(){
+    public boolean isNotPersisted() {
         return id == 0L;
     }
 
