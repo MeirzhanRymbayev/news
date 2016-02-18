@@ -9,6 +9,8 @@ import java.util.Date;
 @Entity
 @Table(name = "NEWS", catalog = "MEIR")
 public class News implements Serializable {
+    private static final long serialVersionUID = 7885426911990676321L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "NEWS_SEQ")
     @SequenceGenerator(name = "NEWS_SEQ", sequenceName = "news_seq")
@@ -73,13 +75,39 @@ public class News implements Serializable {
         return content;
     }
 
-    public boolean isPersisted() {
-        return id != 0L;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        News news = (News) o;
+
+        if (id != news.id) return false;
+        if (!title.equals(news.title)) return false;
+        if (!brief.equals(news.brief)) return false;
+        if (!dateOfCreation.equals(news.dateOfCreation)) return false;
+        return content.equals(news.content);
+
     }
 
-    public boolean isNotPersisted() {
-        return id == 0L;
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + title.hashCode();
+        result = 31 * result + brief.hashCode();
+        result = 31 * result + dateOfCreation.hashCode();
+        result = 31 * result + content.hashCode();
+        return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", brief='" + brief + '\'' +
+                ", dateOfCreation=" + dateOfCreation +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
