@@ -1,12 +1,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="newsBo" class="com.epam.mrymbayev.bo.impl.NewsBoImpl">
+    <bean id="newsService" class="com.epam.mrymbayev.service.impl.NewsServiceImpl">
         <property name="newsDao" ref="newsDao"/>
     </bean>
 
-    <bean id="newsDao" class="com.epam.mrymbayev.dao.impl.NewsDaoForHiberImpl">
+    <bean id="newsDao" class="com.epam.mrymbayev.dao.impl.NewsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <!--Beans declaration end-->
@@ -35,12 +36,11 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
                 <prop key="show_sql">true</prop>
             </props>
-
         </property>
 
         <property name="annotatedClasses">
             <list>
-                <value>com.epam.mrymbayev.entity.News</value>
+                <value>com.epam.mrymbayev.model.News</value>
             </list>
         </property>
     </bean>

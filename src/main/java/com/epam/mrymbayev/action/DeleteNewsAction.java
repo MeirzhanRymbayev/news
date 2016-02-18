@@ -1,6 +1,6 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.bo.NewsBo;
+import com.epam.mrymbayev.service.NewsService;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -13,16 +13,16 @@ public class DeleteNewsAction extends ActionSupport {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-        NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
+        NewsService newsService = (NewsService) getWebApplicationContext().getBean("newsService");
 
-        String[] ids = request.getParameterValues("checkbox");
+        String[] ids = request.getParameterValues("id");
         if (ids.length > 1) {
             for (String id : ids) {
-                newsBo.delete(Long.parseLong(id));
+                newsService.delete(Long.parseLong(id));
             }
         } else {
-            String id = request.getParameter("checkbox");
-            newsBo.delete(Long.parseLong(id));
+            String id = request.getParameter("id");
+            newsService.delete(Long.parseLong(id));
         }
         return mapping.findForward("success");
     }

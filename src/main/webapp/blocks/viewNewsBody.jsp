@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="voucher" type="java.util.List"--%>
 <%--@elvariable id="news" type="kz.epam.mrymbayev.entity.News"--%>
+<%--@elvariable id="newsList" type="java.util.List"--%>
 <form action="<c:url value="/deleteNews.do"/>">
 <c:forEach items="${newsList}" var="news">
     <div class="newsBlock">
@@ -16,7 +17,7 @@
                     key="label.news.body.view.view"/></a>
             <a href="<c:url value="/editNewsPage.do?id=${news.id}"/>"><bean:message
                     key="label.news.body.view.edit"/></a>
-            <input type="checkbox" name="checkbox" value="${news.id}" title="checkbox"/>
+            <input type="checkbox" name="id" value="${news.id}" title="checkbox"/>
         </div>
     </div>
 </c:forEach>

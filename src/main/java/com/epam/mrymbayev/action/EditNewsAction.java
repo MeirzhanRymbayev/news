@@ -1,7 +1,7 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.bo.NewsBo;
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.service.NewsService;
+import com.epam.mrymbayev.model.News;
 import com.epam.mrymbayev.form.NewsForm;
 import com.epam.mrymbayev.util.Utilities;
 import org.apache.struts.action.ActionForm;
@@ -17,7 +17,7 @@ public class EditNewsAction extends ActionSupport {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) {
-        NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
+        NewsService newsService = (NewsService) getWebApplicationContext().getBean("newsService");
         NewsForm newsForm = (NewsForm) form;
         News news = new News();
         String idString = request.getParameter("id");
@@ -38,7 +38,7 @@ public class EditNewsAction extends ActionSupport {
         String dateS = dateString.replaceAll("/", "-");
         Date date = Utilities.getDateFromString(dateS, "MM-dd-yyyy");
         news.setDateOfCreation(date);
-        newsBo.save(news);
+        newsService.save(news);
         return mapping.findForward("edited");
     }
 }

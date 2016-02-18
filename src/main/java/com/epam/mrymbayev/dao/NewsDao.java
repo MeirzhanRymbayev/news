@@ -1,10 +1,10 @@
 package com.epam.mrymbayev.dao;
 
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.model.News;
 
 import java.util.List;
 
-public interface NewsDaoForHiber  {
+public interface NewsDao {
 
         News getById(long id);
 
@@ -12,6 +12,6 @@ public interface NewsDaoForHiber  {
 
         List<News> getAll();
 
-        boolean delete(long id);
+        void delete(long id);
 
 }

@@ -1,7 +1,7 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.bo.NewsBo;
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.service.NewsService;
+import com.epam.mrymbayev.model.News;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -15,15 +15,14 @@ public class ShowNewsListAction extends ActionSupport {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-        NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
-//        newsBo.getConnection();
+        NewsService newsService = (NewsService) getWebApplicationContext().getBean("newsService");
         if (request.getAttribute("id") != null) {
             long id = (long) request.getAttribute("id");
-            News newsById = newsBo.getById(id);
+            News newsById = newsService.getById(id);
             request.setAttribute("news", newsById);
             return mapping.findForward("viewNewsById");
         }
-        List<News> newsList = newsBo.getAll();
+        List<News> newsList = newsService.getAll();
         request.setAttribute("newsList", newsList);
         return mapping.findForward("success");
     }

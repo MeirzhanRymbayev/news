@@ -1,16 +1,16 @@
 package com.epam.mrymbayev.dao.impl;
 
 
-import com.epam.mrymbayev.dao.NewsDaoForHiber;
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.dao.NewsDao;
+import com.epam.mrymbayev.model.News;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import java.util.List;
 
-public class NewsDaoForHiberImpl extends HibernateDaoSupport
-        implements NewsDaoForHiber {
+public class NewsDaoImpl extends HibernateDaoSupport
+        implements NewsDao {
 
     @Override
     public News getById(long id) {
@@ -43,13 +43,12 @@ public class NewsDaoForHiberImpl extends HibernateDaoSupport
     }
 
     @Override
-    public boolean delete(long id) {
+    public void delete(long id) {
         Session session = getSessionFactory().openSession();
         session.beginTransaction();
         News newsForDelete = (News) session.get(News.class, id);
         session.delete(newsForDelete);
         session.getTransaction().commit();
         session.close();
-        return true; // TODO optimize
     }
 }

@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${not empty news}">
-    <jsp:useBean id="news" scope="request" type="com.epam.mrymbayev.entity.News"/>
+    <jsp:useBean id="news" scope="request" type="com.epam.mrymbayev.model.News"/>
 </c:if>
 <font color="red">
     <html:errors></html:errors>
@@ -14,7 +14,8 @@
     <div class="form-block">
         <div class="form-group">
             <label for="title"><bean:message key="news.title"/></label>
-            <html:text property="title" size="20" maxlength="100" styleId="title" styleClass="form-control" value="${news.title}"/>
+            <html:text property="title" size="20" maxlength="100" styleId="title" styleClass="form-control"
+                       value="${news.title}"/>
         </div>
         <div class="form-group">
             <label for="dateOfCreation"><bean:message key="news.date"/></label>

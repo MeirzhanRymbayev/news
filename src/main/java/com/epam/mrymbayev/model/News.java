@@ -1,4 +1,4 @@
-package com.epam.mrymbayev.entity;
+package com.epam.mrymbayev.model;
 
 import org.hibernate.annotations.Type;
 
