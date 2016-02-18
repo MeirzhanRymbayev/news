@@ -1,4 +1,4 @@
-package com.epam.mrymbayev.bo.impl;
+package com.epam.mrymbayev.bo;
 
 import com.epam.mrymbayev.entity.News;
 

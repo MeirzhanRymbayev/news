@@ -1,10 +1,7 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.bo.impl.NewsBo;
-import com.epam.mrymbayev.dao.JdbcNewsDao;
-import com.epam.mrymbayev.dao.NewsDao;
+import com.epam.mrymbayev.bo.NewsBo;
 import com.epam.mrymbayev.entity.News;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;

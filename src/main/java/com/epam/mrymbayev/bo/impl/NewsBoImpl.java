@@ -1,5 +1,6 @@
 package com.epam.mrymbayev.bo.impl;
 
+import com.epam.mrymbayev.bo.NewsBo;
 import com.epam.mrymbayev.dao.NewsDaoForHiber;
 import com.epam.mrymbayev.entity.News;
 

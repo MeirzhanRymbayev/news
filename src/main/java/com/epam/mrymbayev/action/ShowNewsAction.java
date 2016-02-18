@@ -1,9 +1,7 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.bo.impl.NewsBo;
-import com.epam.mrymbayev.dao.JdbcNewsDao;
+import com.epam.mrymbayev.bo.NewsBo;
 import com.epam.mrymbayev.entity.News;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -15,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ShowNewsAction extends ActionSupport {
     @Override
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
          NewsBo newsBo = (NewsBo) getWebApplicationContext().getBean("newsBo");
-//        newsBo.getConnection();
         String id = request.getParameter("id");
         News newsById = newsBo.getById(Long.parseLong(id));
         request.setAttribute("news", newsById);

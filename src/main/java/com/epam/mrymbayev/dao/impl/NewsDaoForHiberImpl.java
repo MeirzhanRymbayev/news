@@ -1,6 +1,7 @@
-package com.epam.mrymbayev.dao;
+package com.epam.mrymbayev.dao.impl;
 
 
+import com.epam.mrymbayev.dao.NewsDaoForHiber;
 import com.epam.mrymbayev.entity.News;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -9,7 +10,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import java.util.List;
 
 public class NewsDaoForHiberImpl extends HibernateDaoSupport
-        implements NewsDaoForHiber{
+        implements NewsDaoForHiber {
 
     @Override
     public News getById(long id) {

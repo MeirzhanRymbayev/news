@@ -1,6 +1,6 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.bo.impl.NewsBo;
+import com.epam.mrymbayev.bo.NewsBo;
 import com.epam.mrymbayev.entity.News;
 import com.epam.mrymbayev.form.NewsForm;
 import com.epam.mrymbayev.util.Utilities;

@@ -6,7 +6,7 @@
         <property name="newsDao" ref="newsDao"/>
     </bean>
 
-    <bean id="newsDao" class="com.epam.mrymbayev.dao.NewsDaoForHiberImpl">
+    <bean id="newsDao" class="com.epam.mrymbayev.dao.impl.NewsDaoForHiberImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <!--Beans declaration end-->
