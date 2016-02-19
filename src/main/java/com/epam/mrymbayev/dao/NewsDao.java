@@ -1,6 +1,6 @@
 package com.epam.mrymbayev.dao;
 
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.model.News;
 
 import java.util.List;
 

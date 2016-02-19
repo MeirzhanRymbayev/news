@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${not empty news}">
-    <jsp:useBean id="news" scope="request" type="com.epam.mrymbayev.entity.News"/>
+    <jsp:useBean id="news" scope="request" type="com.epam.mrymbayev.model.News"/>
 </c:if>
 <font color="red">
     <html:errors></html:errors>

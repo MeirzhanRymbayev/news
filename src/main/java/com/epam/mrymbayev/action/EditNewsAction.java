@@ -1,10 +1,9 @@
 package com.epam.mrymbayev.action;
 
-import com.epam.mrymbayev.dao.JdbcNewsDao;
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.dao.impl.JdbcNewsDao;
+import com.epam.mrymbayev.model.News;
 import com.epam.mrymbayev.form.NewsForm;
 import com.epam.mrymbayev.util.Utilities;
-import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -38,9 +37,7 @@ public class EditNewsAction extends ActionSupport {
         news.setContent(newsForm.getContent());
         String dateString = newsForm.getDateOfCreation();
         String dateS = dateString.replaceAll("/", "-");
-        System.out.println("\n\n\n\n\n" + "dateS = " + dateS);
         Date date = Utilities.getDateFromString(dateS, "MM-dd-yyyy");
-        System.out.println("\n\n\n\n\n" + "date = " + date);
         news.setDateOfCreation(date);
 
         News savedNews = newsDao.save(news);

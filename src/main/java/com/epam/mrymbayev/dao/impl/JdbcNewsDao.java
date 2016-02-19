@@ -1,7 +1,8 @@
-package com.epam.mrymbayev.dao;
+package com.epam.mrymbayev.dao.impl;
 
+import com.epam.mrymbayev.dao.NewsDao;
 import com.epam.mrymbayev.dao.exception.NewsDaoException;
-import com.epam.mrymbayev.entity.News;
+import com.epam.mrymbayev.model.News;
 import com.epam.mrymbayev.pm.PropertyManager;
 import org.apache.log4j.Logger;
 
