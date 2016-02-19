@@ -28,8 +28,7 @@
                 name="newsForm"
                 input="/editNewsPage.do"
                 validate="true">
-                <forward name="created" path="news.created"/>
-                <forward name="edited" path="/viewNewsList.do"/>
+                <forward name="edited" path="/viewNewsList.do" redirect="true"/>
         </action>
 
         <action path="/viewNewsList" type="com.epam.mrymbayev.action.ShowNewsListAction">
