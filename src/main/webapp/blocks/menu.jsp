@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="col-md-3" style="border: 1px solid black;">
     <div style="border: 1px solid black;">
-        <p><bean:message key="news.news"/></p>
+        <p style="text-align: center"><bean:message key="news.news"/></p>
         <ul>
             <li><a href="/viewNewsList.do"><bean:message key="menu.news.list"/></a></li>
             <li><a href="/editNewsPage.do"><bean:message key="menu.add.news"/></a></li>
