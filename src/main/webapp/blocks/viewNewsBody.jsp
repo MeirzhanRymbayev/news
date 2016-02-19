@@ -16,7 +16,7 @@
                     key="label.news.body.view.view"/></a>
             <a href="<c:url value="/editNewsPage.do?id=${news.id}"/>"><bean:message
                     key="label.news.body.view.edit"/></a>
-            <input type="checkbox" name="checkbox" value="${news.id}" title="checkbox"/>
+            <input type="checkbox" name="id" value="${news.id}" title="checkbox"/>
         </div>
     </div>
 </c:forEach>

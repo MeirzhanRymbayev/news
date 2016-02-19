@@ -16,13 +16,13 @@ public class DeleteNewsAction extends ActionSupport {
         JdbcNewsDao newsDao = (JdbcNewsDao) getWebApplicationContext().getBean("jbdcNewsDao");
         newsDao.getConnection();
 
-        String[] ids = request.getParameterValues("checkbox");
+        String[] ids = request.getParameterValues("id");
         if (ids.length > 1) {
             for (String id : ids) {
                 newsDao.delete(Long.parseLong(id));
             }
         } else {
-            String id = request.getParameter("checkbox");
+            String id = request.getParameter("id");
             newsDao.delete(Long.parseLong(id));
         }
         return mapping.findForward("success");
